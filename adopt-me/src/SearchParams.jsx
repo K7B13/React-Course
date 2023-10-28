@@ -1,19 +1,25 @@
 import { useState, useEffect } from "react";
 import Pet from "./Pet"
-
+import useBreedList from "./useBreedList";
 const Animals = ["bird", "cat", "dog", "frog", "fish"];
+
 const SearchParams = () => {
     
     const [location, setLocation] = useState("");
     const [animal, setAnimal] = useState("");
     const [breed, setBreed] = useState("");
     const [pets, SetPets] = useState([]);
-    const breeds = [];
+    const [breeds, status] = useBreedList(animal);
 
     useEffect(() => {
         requestPets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    {
+        console.log("Animal selected:", animal);
+        console.log("Breeds:", breeds);
+    }
 
     async function requestPets() {
         const res = await fetch(
@@ -58,11 +64,12 @@ const SearchParams = () => {
                    onChange={(e) => {
                     setBreed(e.target.value);
                    }}>
-                    <option></option>
+                    <option value="">Select a breed</option> {/* Set a default value */}
                   {breeds.map((breed) => (
-                    <option key={breed}>{breed}</option>
+                    <option key={breed} value={breed}>{breed}</option>
                   ))}
                    </select>
+                   {status === "loading" && <p>Loading...</p>}
                 </label>
                 <button>
                     Submit
@@ -77,6 +84,7 @@ const SearchParams = () => {
                 />
              
             ))}
+            
         </div> 
     )
 }
