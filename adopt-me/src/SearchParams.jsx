@@ -32,7 +32,7 @@ const SearchParams = () => {
     };
     return(
         <div className="search-params">
-            <form onSubmit={e => {
+            <form onSubmit={(e) => {
                 e.preventDefault();
                 requestPets();
             }}>
@@ -82,9 +82,7 @@ const SearchParams = () => {
                 breed={pet.breed}
                 key={pet.id}  
                 />
-             
             ))}
-            
         </div> 
     )
 }
