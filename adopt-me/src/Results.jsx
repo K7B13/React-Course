@@ -22,4 +22,4 @@ const Results = ({ pets }) => {
     );
 };
 
-export default Results ();
+export default Results;
