@@ -48,7 +48,7 @@ const SearchParams = () => {
                     setAnimal(e.target.value);
                     setBreed("")
                    }}>
-                    <option></option>
+                    <option>Select a animal</option>
                   {Animals.map((animal) => (
                     <option key={animal}>{animal}</option>
                   ))}
@@ -74,7 +74,7 @@ const SearchParams = () => {
                     Submit
                 </button>
             </form>
-            {console.log(pets)}
+           
         <Results pets={pets} />
         </div> 
     )
